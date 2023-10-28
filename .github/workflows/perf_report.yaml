@@ -16,7 +16,7 @@ jobs:
       #   with:
       #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
-      - name: Check python version and upgrade pip version
+      - name: Check python version (inside Docker container) and upgrade pip version
         run: |
           uname -srm
           python --version
@@ -33,5 +33,15 @@ jobs:
           # Post reports as comments in GitHub PRs
           #cat results.txt >> report.md
           #cml comment create report.md
-          echo "Model Metrics"
-          cat metrics.txt
+          echo "## Model Metrics" > report.md
+          cat metrics.txt >> report.md
+
+          echo "## Data Viz"
+          echo "![feature_importance](feature_importance.png)" >> report.md
+          echo "![residuals](residuals.png)" >> report.md
+      - name: Comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: report.md
