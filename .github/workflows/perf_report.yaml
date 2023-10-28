@@ -34,7 +34,9 @@ jobs:
           #cat results.txt >> report.md
           #cml comment create report.md
           echo "## Model Metrics" > report.md
+          echo "```"
           cat metrics.txt >> report.md
+          echo "```"
 
           echo "## Data Viz" >> report.md
           #echo "![feature_importance](feature_importance.png)" >> report.md
@@ -42,7 +44,7 @@ jobs:
           cml-publish residuals.png --md >> report.md
 
           echo "" >> report.md
-          echo "## Content of `report.md`" >> report.md
+          echo "## Content" >> report.md
           echo "```" >> report.md
           cat report.md >> report.md
           echo "```" >> report.md
