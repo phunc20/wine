@@ -34,20 +34,21 @@ jobs:
           #cat results.txt >> report.md
           #cml comment create report.md
           echo "## Model Metrics" > report.md
-          echo "```"
+          echo "\`\`\`" >> report.md
           cat metrics.txt >> report.md
-          echo "```"
+          echo "\`\`\`" >> report.md
 
           echo "## Data Viz" >> report.md
           #echo "![feature_importance](feature_importance.png)" >> report.md
           #echo "<img src=residuals.png>" >> report.md
+          cml-publish feature_importance.png --md >> report.md
           cml-publish residuals.png --md >> report.md
 
           echo "" >> report.md
           echo "## Content" >> report.md
-          echo "```" >> report.md
+          echo "\`\`\`" >> report.md
           cat report.md >> report.md
-          echo "```" >> report.md
+          echo "\`\`\`" >> report.md
       - name: Comment PR
         uses: machine-learning-apps/pr-comment@master
         env:
