@@ -36,9 +36,9 @@ jobs:
           echo "## Model Metrics" > report.md
           cat metrics.txt >> report.md
 
-          echo "## Data Viz"
+          echo "## Data Viz" >> report.md
           echo "![feature_importance](feature_importance.png)" >> report.md
-          echo "![residuals](residuals.png)" >> report.md
+          echo "<img src=residuals.png>" >> report.md
       - name: Comment PR
         uses: machine-learning-apps/pr-comment@master
         env:
