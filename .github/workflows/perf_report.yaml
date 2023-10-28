@@ -16,6 +16,10 @@ jobs:
       #   with:
       #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
+      - name: Check python version and upgrade pip version
+        run: |
+          python --version
+          pip install --upgrade pip
       - name: Train model
         run: |
           # Your ML workflow goes here
