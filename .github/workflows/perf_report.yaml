@@ -47,7 +47,7 @@ jobs:
           echo "" >> report.md
           echo "## Content" >> report.md
           echo "\`\`\`" >> report.md
-          cat report.md >> report.md
+          tail report.md >> report.md
           echo "\`\`\`" >> report.md
       - name: Comment PR
         uses: machine-learning-apps/pr-comment@master
