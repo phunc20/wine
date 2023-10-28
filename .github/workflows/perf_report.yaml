@@ -3,6 +3,12 @@ on: push
 jobs:
   run:
     runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check python version and upgrade pip version on Ubuntu
+        run: |
+          uname -srm
+          python --version
     # optionally use a convenient Ubuntu LTS + DVC + CML image
     # container: ghcr.io/iterative/cml:0-dvc2-base1
     container: docker://dvcorg/cml-py3:runner
@@ -18,6 +24,7 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Check python version and upgrade pip version
         run: |
+          uname -srm
           python --version
           pip install --upgrade pip
       - name: Train model
